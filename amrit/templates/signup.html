@@ -1,0 +1,67 @@
+{% load static %}
+
+<html>
+
+<head>
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<style>
+.content {
+  max-width: 300px;
+  margin: auto;
+  color: yellow;
+}
+
+
+</style>
+
+<title>Sign up</title>
+
+</head>
+
+
+<body>
+
+<style>
+
+body {
+ background-image: url({% static 't2.jpg' %});
+ background-size: 1550px 720px;
+}
+
+</style>
+
+{% if messages %}
+
+{% for message in messages %}
+<div class="alert alert-warning">
+  <strong>{{message}}</strong>
+</div>
+{% endfor %}
+
+{% endif %}
+
+<div class="content">
+<h2 class="text-info">Sign up Form</h2>
+<form method="post">
+  {% csrf_token %}
+
+    {% for field in form %}
+    <p>
+      {{ field.label_tag }}<br>
+      {{ field }}
+
+    </p>
+    {% endfor %}
+
+  <button type="submit" class="btn btn-primary btn-lg btn-block">Sign Up</button>
+</form>
+</div>
+
+</body>
+
+</html>

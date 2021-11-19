@@ -1,0 +1,532 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+
+<script type="application/x-javascript">
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+</script>
+
+<link href="{% static 'bootstrap.css' %}" rel="stylesheet" type="text/css" media="all" />
+	<!--// Bootstrap-CSS -->
+<link href="{% static 'font-awesome.css' %}" rel="stylesheet">
+	<!--// Font-Awesome-CSS -->
+<link href="{% static 'style.css' %}" rel="stylesheet" type="text/css" media="all" />
+	<!-- //Style Sheets -->
+	<!-- web-fonts -->
+<link href="https://fonts.googleapis.com/css?family=Khula:300,400,600,700,800" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,400,400i,500,500i,600,600i,700,700i,800" rel="stylesheet">
+	<!--// web-fonts -->
+
+<style>
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6{
+font-family: 'Candal',serif;
+color: black;
+text-align: center;
+margin: 5px 0px 5px 0px;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #000040;
+}
+
+.topnav a {
+  float: center;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+.container1 {
+  display: inline-block;
+  cursor: pointer;
+  position: absolute;
+  transform: translate(1200%,50%);
+
+}
+
+.bar1, .bar2, .bar3 {
+  width: 35px;
+  height: 5px;
+  background-color: white;
+  margin: 6px 0;
+  transition: 0.4s;
+}
+
+.sidenav {
+  display: none;
+  height: 98%;
+  width: 300px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #333;
+  overflow: auto;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 10px 10px 10px 10px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #818181;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+
+img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  }
+
+</style>
+
+<script>
+
+function openNav() {
+  document.getElementById("mySidenav").style.display = "block";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.display = "none";
+}
+
+</script>
+
+<body>
+
+{% if messages%}
+
+{% for message in messages %}
+<div class="alert alert-warning">
+  <strong>{{message}}</strong>
+</div>
+{% endfor%}
+
+{% endif%}
+
+<div class="topnav">
+    <img width="200" height="80" align="center" src="{% static 'logo1.jpg' %}">
+    <a href="/">Home</a>
+	<a href="/dash">Tableau Dashboard</a>
+
+	<div class="container1" onclick="openNav()">
+  <div class="bar1"></div>
+  <div class="bar2"></div>
+  <div class="bar3"></div>
+  </div>
+
+</div>
+
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times</a>
+
+    <a href="/a">Toss Decisions across Seasons</a>
+	<a href="/d">Matches played across each season</a>
+    <a href="/i">Maximum Man Of Matches</a>
+
+
+</div>
+
+<br/>
+
+	<div class="container">
+	<div class="wthree_head_section">
+				<h3 class="w3l_header">WINNER <span>PREDICTOR</span></h3>
+
+		</div>
+
+
+
+		<div class="ab-agile">
+            <div style="padding: 0 0px;">
+                    <form action="" method="post" style="display: inline">
+						{% csrf_token %}
+                        <div class="form-group">
+
+
+            <label class="control-label  " for="team1">Team 1</label>
+
+
+        <div class=" ">
+            <select name="team1" class=" form-control" id="team1">
+  <option value="SRH">Sunrisers Hyderabad</option>
+
+  <option value="RCB">Royal Challengers Bangalore</option>
+
+  <option value="CSK">Chennai Super Kings</option>
+
+  <option value="KXIP">Kings XI Punjab</option>
+
+  <option value="RR">Rajasthan Royals</option>
+
+  <option value="DD">Delhi Daredevils</option>
+
+  <option value="MI">Mumbai Indians</option>
+
+  <option value="KKR">Kolkata Knight Riders</option>
+
+  <option value="RPS">Rising Pune Supergiant</option>
+				<option value="KTK">Kochi Tuskers Kerala</option>
+				<option value="GL">Gujarat Lions</option>
+				<option value="DC">Deccan Chargers</option>
+
+</select>
+
+
+
+
+        </div>
+
+</div>
+						                   <div class="form-group">
+
+
+            <label class="control-label  " for="team2">Team2</label>
+
+
+        <div class=" ">
+            <select name="team2" class=" form-control" id="team2">
+  <option value="SRH">Sunrisers Hyderabad</option>
+
+  <option value="RCB">Royal Challengers Bangalore</option>
+
+  <option value="CSK">Chennai Super Kings</option>
+
+  <option value="KXIP">Kings XI Punjab</option>
+
+  <option value="RR">Rajasthan Royals</option>
+
+  <option value="DD">Delhi Daredevils</option>
+
+  <option value="MI">Mumbai Indians</option>
+
+  <option value="KKR">Kolkata Knight Riders</option>
+
+  <option value="RPS">Rising Pune Supergiant</option>
+
+				<option value="KTK">Kochi Tuskers Kerala</option>
+				<option value="GL">Gujarat Lions</option>
+					<option value="DC">Deccan Chargers</option>
+
+</select>
+
+
+
+
+        </div>
+
+</div>
+
+
+						  <div class="form-group">
+
+
+            <label class="control-label  " for="venue">Venue</label>
+
+
+        <div class=" ">
+            <select name="venue" class=" form-control" id="venue">
+  <option value="Rajiv Gandhi International Stadium, Uppal">Rajiv Gandhi International Stadium</option>
+
+  <option value="Maharashtra Cricket Association Stadium">Maharashtra Cricket Association Stadium</option>
+
+  <option value="Saurashtra Cricket Association Stadium">Saurashtra Cricket Association Stadium</option>
+
+  <option value="Holkar Cricket Stadium">Holkar Cricket Stadium</option>
+
+  <option value="M Chinnaswamy Stadium">M Chinnaswamy Stadium</option>
+
+  <option value="Wankhede Stadium">Wankhede Stadium</option>
+
+  <option value="Eden Gardens">Eden Gardens</option>
+
+  <option value="Feroz Shah Kotla">Feroz Shah Kotla</option>
+
+  <option value="Punjab Cricket Association IS Bindra Stadium, Mohali">Punjab Cricket Association IS Bindra Stadium</option>
+
+  <option value="Green Park">Green Park</option>
+
+  <option value="Punjab Cricket Association Stadium, Mohali">Punjab Cricket Association Stadium</option>
+
+  <option value="Sawai Mansingh Stadium">Sawai Mansingh Stadium</option>
+
+  <option value="MA Chidambaram Stadium, Chepauk">MA Chidambaram Stadium</option>
+
+  <option value="Dr DY Patil Sports Academy">Dr DY Patil Sports Academy</option>
+
+  <option value="Newlands">Newlands</option>
+
+  <option value="St George's Park">St George's Park</option>
+
+  <option value="Kingsmead">Kingsmead</option>
+
+  <option value="SuperSport Park">SuperSport Park</option>
+
+  <option value="Buffalo Park">Buffalo Park</option>
+
+  <option value="New Wanderers Stadium">New Wanderers Stadium</option>
+
+  <option value="De Beers Diamond Oval">De Beers Diamond Oval</option>
+
+  <option value="OUTsurance Oval">OUTsurance Oval</option>
+
+  <option value="Brabourne Stadium">Brabourne Stadium</option>
+
+  <option value="Sardar Patel Stadium, Motera">Sardar Patel Stadium</option>
+
+
+</select>
+
+
+
+
+        </div>
+
+</div>
+
+
+						                   <div class="form-group">
+
+
+            <label class="control-label  " for="tosswin">Toss Winner</label>
+
+
+        <div class=" ">
+            <select name="tosswin" class=" form-control" id="tosswin">
+  <option value="SRH">Sunrisers Hyderabad</option>
+
+  <option value="RCB">Royal Challengers Bangalore</option>
+
+  <option value="CSK">Chennai Super Kings</option>
+
+  <option value="KXIP">Kings XI Punjab</option>
+
+  <option value="RR">Rajasthan Royals</option>
+
+  <option value="DD">Delhi Daredevils</option>
+
+  <option value="MI">Mumbai Indians</option>
+
+  <option value="KKR">Kolkata Knight Riders</option>
+
+  <option value="RPS">Rising Pune Supergiant</option>
+				<option value="KTK">Kochi Tuskers Kerala</option>
+				<option value="GL">Gujarat Lions</option>
+					<option value="DC">Deccan Chargers</option>
+
+</select>
+
+
+
+
+        </div>
+
+</div>
+
+						<div class="form-group">
+
+
+            <label class="control-label  " for="tossd">Toss Decision</label>
+
+
+        <div class=" ">
+            <select name="tossd" class=" form-control" id="tossd">
+  <option value="bat">Bat</option>
+
+  <option value="field">Field</option>
+
+
+</select>
+
+
+        </div>
+
+</div>
+
+
+						<input class="btn btn-success btn-block" type="submit" value="PREDICT RESULT OF THE MATCH!" />
+
+					</form>
+                </div>
+
+             <br/>
+			<h3 align="center">{{output}}</h3>
+
+		</div>
+	</div>
+</div>
+
+
+ 	<div class="wthree-mid jarallax">
+		<div class="container">
+			<h3>Match Result Predictions</h3>
+			<p>IPL Matches are known for the unexpected outcomes and unexpected player performances.</p>
+		</div>
+	</div>
+
+	<!-- Modal1 -->
+	<div class="modal fade" id="myModal4" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4>4th Umpire</h4>
+					<img src="{% static 'b11.jpg' %}" alt=" " class="img-responsive">
+					<h5>Neque porro quisquam est qui dolorem </h5>
+					<p>Ut in ligula sollicitudin, auctor elit vel, mollis tortor. Nullam id magna in eros mollis porttitor vel et eros.Phasellus
+						sed iaculis nibh, non suscipit tortor. Aenean ante massa, lobortis et dolor eget, sollicitudin luctus arcu. Donec eros
+						tortor, ultrices in lectus quis, aliquet commodo lectus.Donec eros tortor, ultrices in lectus quis, aliquet commodo
+						lectus.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- //Modal1 -->
+	<!-- footer -->
+	<div class="footer">
+	<div class="container">
+		<div class="f-bg-w3l">
+		<div class="col-md-4 w3layouts_footer_grid">
+            <h2>Contact <span>Information</span></h2>
+					    <ul class="con_inner_text">
+							<li><span class="fa fa-map-marker" aria-hidden="true"></span> Vikas Puri <label> New Delhi, India</label></li>
+							<li><span class="fa fa-envelope-o" aria-hidden="true"></span> <a href="mailto:anitsimar@gmail.com">anitsimar@gmail.com</a></li>
+							<li><span class="fa fa-phone" aria-hidden="true"></span> +91 99532 56940</li>
+						</ul>
+
+        </div>
+				<div class="col-md-4 w3layouts_footer_grid">
+					<h2>Subscribe <span>Newsletter</span></h2>
+					<p>By subscribing to our mailing list you will always get latest news from us.</p>
+					<form action="#" method="post">
+						<input type="email" name="Email" placeholder="Enter your email..." required="">
+						<button class="btn1"><i class="fa fa-envelope-o" aria-hidden="true"></i></button>
+						<div class="clearfix"> </div>
+					</form>
+				</div>
+
+            <div class="col-md-4 w3layouts_footer_grid">
+					<h2>Follow <span>Us</span></h2>
+
+                    <ul class="social_agileinfo">
+						<li><a href="https://www.facebook.com/ashish.k.jaiswal21" class="w3_facebook"><i class="fa fa-facebook"></i></a></li>
+						<li><a href="https://www.instagram.com/devanshusomani/" class="w3_instagram"><i class="fa fa-instagram"></i></a></li>
+						<li><a href="https://plus.google.com/109386964403188731935" class="w3_google"><i class="fa fa-google-plus"></i></a></li>
+					 </ul>
+            </div>
+				<div class="clearfix"> </div>
+			</div>
+			</div>
+			<p class="copyright">© 2020 4th Umpire. All Rights Reserved</p>
+	</div>
+
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times</a>
+
+    <a href="/a">Toss Decisions across Seasons</a>
+	<a href="/d">Matches played across each season</a>
+    <a href="/i">Maximum Man Of Matches</a>
+
+
+</div>
+
+
+	<a href="#home" class="scroll" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+	<!-- //smooth scrolling -->
+	<script type='text/javascript' src="/static/js/jquery-2.2.3.min.js"></script>
+	<!-- start-smoth-scrolling -->
+	<script src="/static/js/jarallax.js"></script>
+	<script type="text/javascript">
+		/* init Jarallax */
+		$('.jarallax').jarallax({
+			speed: 0.5,
+			imgWidth: 1366,
+			imgHeight: 768
+		})
+	</script>
+	<!-- //Owl-Carousel-JavaScript -->
+	<script type="text/javascript" src="/static/js/move-top.js"></script>
+	<script type="text/javascript" src="/static/js/easing.js"></script>
+	<script type="text/javascript">
+		jQuery(document).ready(function ($) {
+			$(".scroll").click(function (event) {
+				event.preventDefault();
+				$('html,body').animate({
+					scrollTop: $(this.hash).offset().top
+				}, 1000);
+			});
+		});
+	</script>
+	<!-- start-smoth-scrolling -->
+	<!-- here stars scrolling icon -->
+	<script type="text/javascript">
+		$(document).ready(function () {
+			/*
+				var defaults = {
+				containerID: 'toTop', // fading element id
+				containerHoverID: 'toTopHover', // fading element hover id
+				scrollSpeed: 1200,
+				easingType: 'linear'
+				};
+			*/
+
+			$().UItoTop({
+				easingType: 'easeOutQuart'
+			});
+
+		});
+	</script>
+	<!-- //here ends scrolling icon -->
+
+
+	<!--js for bootstrap working-->
+	<script src="/static/js/bootstrap.js"></script>
+	<!-- //for bootstrap working -->
+</body>
+</html>
